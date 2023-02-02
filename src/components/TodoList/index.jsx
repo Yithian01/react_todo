@@ -20,7 +20,7 @@ const TodoList = ({todos, setSelectTodoIndex,deleteTodo,selectTodoIndex}) => {
                             e.stopPropagation();
                             deleteTodo(index)
                           }}
-                          isSelected={ index === selectTodoIndex}
+                          isSelected = { index === selectTodoIndex}
                           >
                             {todo.title}
                         </TodoItem>  
