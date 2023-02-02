@@ -4,51 +4,47 @@ import { setItem ,getItem } from './lib/stroage';
 import TodoTitleArea from './components/TodoTitleArea/index';
 import TodoContainer from './components/TodoContainer';
 import debounce from 'lodash.debounce';
+const debouncedSetItem = debounce(setItem, 5000);
+
 
 function App() {
   const [todos, setTodos] = useState( getItem('todo') || []);
-
   const[selectTodoIndex,setSelectTodoIndex] = useState(0);
-  const debouncedSetItem = debounce(setItem, 5000);
 
-  const setTodo = useCallback((newTodo) =>{
-      const newTodos = [...todos] // 먼저 기존의 것을 모두 풀고 // 새로운 레퍼런스로 만들어준다. ( ... 스프레드 연산자로 )
-      newTodos[selectTodoIndex] =newTodo; // 해당 index에 해당하는 부분을 newTodo라는 매개변수로 받는다.
-      debouncedSetItem('todo',newTodos); // todos가 있는 State의 값을 변경해준다.
-      setTodos(newTodos)
-      return newTodos
+   const setTodo = useCallback((newTodo) => {
+    const newTodos =[...todos]; 
+    newTodos[selectTodoIndex] = newTodo ;
+    setTodos(newTodos)
+    debouncedSetItem('todo',newTodos) 
   },[todos,selectTodoIndex])
 
+ 
 
-  const addTodo = useCallback(()=>{
-    setTodos((todos)=>{
-      const newTodos =[
-        ...todos,
-        {
-          title:"제목을 입력하세요",
-          content:"해야 할 일을 입력해 보세요."
-        }
-      ]
+  const addTodo = useCallback(() => {
+    const now = new Date().getTime();
+     const newTodos = [
+       ...todos,
+       {
+         title:'😊제목을 입력하세요',
+         content:'해야할 일들을 기록해 보세요',
+         createdAt: now,
+       },
+     ]
+   setTodos(newTodos)
+   setSelectTodoIndex(todos.length)
+   debouncedSetItem('todo',newTodos) 
+ },[todos])
 
-      debouncedSetItem('todo',newTodos);
-      return newTodos;
-    });
-   
-    setSelectTodoIndex(todos.length)    
-  },[todos]);
 
-  const deleteTodo = useCallback((index) =>{
-       setTodos((todos)=>{
-      const newTodos = [...todos];
-      newTodos.splice(index,1)  // index번호부터 1개 삭제 자기자신 삭제
-        debouncedSetItem('todo',newTodos);
-        return newTodos;
-    
-      });
-    if(index === selectTodoIndex){
-      setSelectTodoIndex(0);
-    }
-  },[selectTodoIndex,todos]);
+ const deleteTodo = useCallback((index) => {
+  const newTodos = [...todos] ;
+  newTodos.splice(index,1);
+  setTodos(newTodos)
+  if(index===selectTodoIndex){
+    setSelectTodoIndex(0);
+  }
+  debouncedSetItem('todo',newTodos)
+},[selectTodoIndex, todos])
 
 
   return (

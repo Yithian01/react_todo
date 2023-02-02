@@ -13,7 +13,7 @@
     border-bottom: 1px dashed #f00;
 }
 .todoItem.on{
-    background-color: rgba(255, 255, 255, alpha.3);
+    background-color: rgba(255, 255, 255, .3);
     font-weight: 500;
     color: #000;
 }
