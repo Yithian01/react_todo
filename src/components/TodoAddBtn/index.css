@@ -1,0 +1,14 @@
+.TodoAddBtn{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.TodoAddBtn button {
+    background-color: #369;
+    border :none;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}

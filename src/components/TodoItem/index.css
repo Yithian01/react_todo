@@ -1,0 +1,33 @@
+.todoItem {
+    height: 30px;
+    line-height: 30px;
+    padding: 8px 0; 
+    border-bottom: 1px solid #efe8c8;
+    text-indent: 80px;
+    position: relative;
+    cursor: pointer; 
+    font-size: 1.25rem;
+}
+
+.todoItem:hover{
+    border-bottom: 1px dashed #f00;
+}
+.todoItem.on{
+    background-color: rgba(255, 255, 255, alpha.3);
+    font-weight: 500;
+    color: #000;
+}
+.delBtn{
+    width: 60px;
+    height: 30px;
+    border: 1px solid #f00;
+    border-radius: 3px;
+    color: #bcb282;
+    text-indent: 0;
+    text-align: center;
+    font-size: 0.725ren;
+    position: absolute;
+    right :1rem;
+    background: none;
+    color: #f00;
+}

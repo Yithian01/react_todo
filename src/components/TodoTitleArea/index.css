@@ -1,0 +1,9 @@
+.titleArea h1 {
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    font-size:  1.5rem;
+    background: url(./../../../public/asset/img/note-h1.png);
+    color: #fff;
+    border-bottom: 1px solid #000;
+}
